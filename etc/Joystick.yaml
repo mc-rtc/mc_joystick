@@ -1,0 +1,44 @@
+# A profile gives information about a Joystick:
+# - type of connection used to read the joystick inputs
+# - configuration specific to the connection library (e.g. ROS message to axis/buttons mapping)
+#
+# This files provides some common profiles
+profiles:
+  ROS::XBoxOne:
+    type: ROS
+    # Topic this subscribes to
+    topic: /joy
+    # Maps sensor_msgs::Joy::buttons to mc_joystick::Button
+    ros_buttons:
+      0: A
+      1: B
+      2: X
+      3: YY
+      4: L1
+      5: R1
+      6: Select
+      7: Start
+      8: Home
+      9: L3
+      10: R3
+    # Maps sensor_msgs::Joy::axes to mc_joystick::Axis/mc_joystick::Button
+    ros_axes:
+      0: Left_LR
+      1: Left_UD
+      2: L2
+      3: Right_LR
+      4: Right_UD
+      5: R2
+      6: [DPad_Right, DPad_Left] # -1.0 is Right and and 1.0 is Left
+      7: [DPad_Down, DPad_Up] # -1.0 is Down and 1.0 is Up
+    # Standard axes work this way:
+    # *_LR:  left is 1.0, right is -1.0
+    # *_UD:  up is 1.0, down is -1.0
+    # L2/R2: 1.0 is off, -1.0 is fully pressed
+    # If an axis is in the inverted axes list, the plugin will take care of the conversion
+    inverted_axes: []
+  # This profile demonstrates the use of the `base` keyword
+  ROS::PS4:
+    base: ROS::XBoxOne
+# The plugin connects to the profiles provided in this list
+connect: [ROS::XBoxOne]
