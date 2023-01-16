@@ -10,7 +10,7 @@ Two types of joystick are supported:
 These joysticks are abstracted to a common model, the following sample shows how you can read the data from the plugin:
 
 ```cpp
-#include <mc_rtc_joystick/JoystickState.h>
+#include <mc_joystick/JoystickState.h>
 
 // Show available controllers
 const auto & available_joysticks = ctl.datastore().get<std::vector<std::string>>("Joystick::connected");

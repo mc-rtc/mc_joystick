@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-set(PROJECT_NAME centroidal_control_collection)
+set(PROJECT_NAME mc-rtc-joystick)
 set(PROJECT_VERSION 1.0.0)
 set(PROJECT_GENERATED_HEADERS_SKIP_DEPRECATED ON)
 set(PROJECT_GENERATED_HEADERS_SKIP_CONFIG ON)
@@ -41,4 +41,4 @@ add_plugin(Joystick ${plugin_SRC} ${plugin_HDR})
 target_include_directories(Joystick PUBLIC $<INSTALL_INTERFACE:include>)
 target_link_libraries(Joystick PUBLIC glfw mc_rtc::mc_rtc_ros)
 
-install(FILES ${plugin_HDR} DESTINATION include/mc_rtc_joystick)
+install(FILES ${plugin_HDR} DESTINATION include/mc_joystick)
