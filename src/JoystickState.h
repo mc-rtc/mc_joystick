@@ -90,6 +90,17 @@ struct State
   ButtonArray buttons;
   /** Axis state, the values are in the [-1.0, 1.0] range, \ref Axis for the meaning based on the axis */
   AxisArray axes;
+
+  /** Constructs a default state:
+   * - all buttons are not pushed (false)
+   * - all axes are in the middle (0.0) except for L2/R2 which are fully released (1.0)
+   */
+  State();
+
+  State(const State &) = default;
+  State(State &&) = default;
+  State & operator=(const State &) = default;
+  State & operator=(State &&) = default;
 };
 
 } // namespace mc_joystick
@@ -108,7 +119,7 @@ struct ConfigurationLoader<mc_joystick::Button>
   {                                     \
     return mc_joystick::Button::BUTTON; \
   }
-    if(in == "YY")
+    if(in == "Y")
     {
       return mc_joystick::Button::Y;
     }
@@ -140,22 +151,21 @@ struct ConfigurationLoader<mc_joystick::Button>
     return #BUTTON
     switch(button)
     {
-      case mc_joystick::Button::Y:
-        return "YY";
-        SAVE_CASE(B);
-        SAVE_CASE(A);
-        SAVE_CASE(X);
-        SAVE_CASE(L1);
-        SAVE_CASE(L3);
-        SAVE_CASE(R1);
-        SAVE_CASE(R3);
-        SAVE_CASE(Select);
-        SAVE_CASE(Start);
-        SAVE_CASE(Home);
-        SAVE_CASE(DPad_Up);
-        SAVE_CASE(DPad_Down);
-        SAVE_CASE(DPad_Left);
-        SAVE_CASE(DPad_Right);
+      SAVE_CASE(B);
+      SAVE_CASE(A);
+      SAVE_CASE(X);
+      SAVE_CASE(Y);
+      SAVE_CASE(L1);
+      SAVE_CASE(L3);
+      SAVE_CASE(R1);
+      SAVE_CASE(R3);
+      SAVE_CASE(Select);
+      SAVE_CASE(Start);
+      SAVE_CASE(Home);
+      SAVE_CASE(DPad_Up);
+      SAVE_CASE(DPad_Down);
+      SAVE_CASE(DPad_Left);
+      SAVE_CASE(DPad_Right);
       default:
         config.add("b", "UNKNOWN");
         return config("b");

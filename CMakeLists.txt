@@ -19,22 +19,16 @@ if(NOT TARGET mc_rtc::mc_rtc_ros)
   message(FATAL_ERROR "mc_rtc ROS plugins is required for this plugin")
 endif()
 
-if(DEFINED BUILD_SHARED_LIBS)
-  set(WAS_BUILD_SHARED_LIBS ${BUILD_SHARED_LIBS})
-endif()
-set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build shared libs" FORCE)
-add_subdirectory(ext/glfw EXCLUDE_FROM_ALL)
-if(DEFINED WAS_BUILD_SHARED_LIBS)
-  set(BUILD_SHARED_LIBS ${WAS_BUILD_SHARED_LIBS} CACHE BOOL "Build shared libs" FORCE)
-endif()
-
 set(plugin_SRC
   src/Joystick.cpp
+  src/JoystickState.cpp
+  src/updaters/ROSUpdater.cpp
 )
 
 set(plugin_HDR
   src/Joystick.h
   src/JoystickState.h
+  src/updaters/ROSUpdater.h
 )
 
 add_plugin(Joystick ${plugin_SRC} ${plugin_HDR})
