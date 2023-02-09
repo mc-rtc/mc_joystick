@@ -12,7 +12,7 @@ These joysticks are abstracted to a common model, the following sample shows how
 ```cpp
 #include <mc_joystick/JoystickState.h>
 
-// Show available controllers
+// List available controllers
 const auto & available_joysticks = ctl.datastore().get<std::vector<std::string>>("Joystick::connected");
 if(available_joysticks.size() == 0)
 {
@@ -42,7 +42,7 @@ bool A  = state.buttons[Button::A];
 You can make sure the plugin is installed on your system:
 
 ```cmake
-find_package(mc_rtc_joystick REQUIRED)
+find_package(mc_joystick REQUIRED)
 ```
 
 See [etc/Joystick.yaml](etc/Joystick.yaml) for an example configuration.
